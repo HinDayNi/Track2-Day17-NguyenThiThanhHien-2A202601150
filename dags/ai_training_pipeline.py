@@ -17,7 +17,7 @@ from airflow import DAG
 from airflow.operators.bash import BashOperator
 
 DEFAULT_ARGS = {
-    "owner": "data-platform",
+    "owner": "data-platform",   
     "retries": 2,
     "retry_delay": dt.timedelta(minutes=5),
 }
@@ -33,8 +33,8 @@ with DAG(
     # TODO (nhiệm vụ 1): hai tham số dưới đây quyết định chuyện gì xảy ra
     # khi ai đó bấm Clear Task, và khi DAG bị dồn nhiều lần chạy cùng lúc.
     # Đọc lại triệu chứng ở phiếu #1041 rồi đặt lại cho đúng.
-    catchup=True,
-    # max_active_runs=?
+    catchup=False,
+    max_active_runs=1,
     # ------------------------------------------------------------------
 ) as dag:
 
